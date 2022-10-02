@@ -1,2 +1,2 @@
 # networking
-GoLand repository for network engineering programs
+GoLang repository for network engineering programs
