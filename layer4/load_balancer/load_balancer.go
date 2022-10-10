@@ -21,7 +21,7 @@ type strategy interface {
 func registerIP() {
 	nat = make(map[int]string)
 	nat[0] = "0.0.0.0:8000"
-	nat[1] = "0.0.0.0:8080"
+	nat[1] = "127.0.0.1:8080"
 }
 
 func sendRequest(host string, port int) {
@@ -35,9 +35,7 @@ func getHandler(s strategy) func(buf []byte) {
 	}
 	start := 0
 	return func(buf []byte) {
-		nat := nat_copy
-		start := start
-		sendRequest(s.GetRedirectionTarget(nat, &start))
+		sendRequest(s.GetRedirectionTarget(nat_copy, &start))
 	}
 }
 
